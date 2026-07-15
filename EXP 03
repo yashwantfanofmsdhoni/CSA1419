@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char ch;
+
+    printf("Enter the program (Press Ctrl+Z/Ctrl+D to end):\n");
+
+    while ((ch = getchar()) != EOF) {
+
+        if (ch == ' ' || ch == '\t' || ch == '\n')
+            continue;
+
+        if (ch == '/') {
+            char next = getchar();
+
+            if (next == '/') {
+                while ((ch = getchar()) != '\n' && ch != EOF);
+            }
+            else if (next == '*') {
+                char prev = 0;
+                while ((ch = getchar()) != EOF) {
+                    if (prev == '*' && ch == '/')
+                        break;
+                    prev = ch;
+                }
+            }
+            else {
+                printf("Operator : /\n");
+                ungetc(next, stdin);
+            }
+        }
+
+        else if (isalpha(ch))
+            printf("Identifier : %c\n", ch);
+
+        else if (isdigit(ch))
+            printf("Constant : %c\n", ch);
+
+        else if (ch=='+' || ch=='-' || ch=='*' || ch=='=' || ch=='%')
+            printf("Operator : %c\n", ch);
+    }
+
+    return 0;
+}
