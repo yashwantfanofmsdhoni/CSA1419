@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    char exp[50];
+    int i;
+
+    printf("Enter an expression: ");
+    scanf("%s", exp);
+
+    for(i = 0; exp[i] != '\0'; i++) {
+        if(exp[i] == '+')
+            printf("+ is Addition Operator\n");
+        else if(exp[i] == '-')
+            printf("- is Subtraction Operator\n");
+        else if(exp[i] == '*')
+            printf("* is Multiplication Operator\n");
+        else if(exp[i] == '/')
+            printf("/ is Division Operator\n");
+    }
+
+    return 0;
+}
